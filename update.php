@@ -23,6 +23,23 @@
         th {
             background-color: lightskyblue;
         }
+
+        a {
+            background-color: green;
+            padding: 10px;
+            margin: 10px;
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+            width: max-content;
+            display: block;
+            text-decoration: none;
+            transition: all .3s ease-in-out;
+        }
+
+        a:hover {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
@@ -35,7 +52,7 @@
             $sql = "SELECT * FROM `usuario` WHERE `id_Usuario` = $id";
             $resultado = mysqli_query($conn, $sql);
 
-            echo "<form action='#' method='post' autocomplete='off'>";
+            echo "<form action='#' method='post' autocomplete='off' id='formu'>";
             echo "<table><tr>
             <th>ID</th>
             <th>Nome</th>
@@ -52,7 +69,12 @@
                 echo "<td><input type='name' name='nome' placeholder='$rows->nome_Usuario'></td>";
                 echo "<td><input type='email' name='email' placeholder='$rows->email_Usuario'></td>";
                 echo "<td><input type='password' name='senha' placeholder='$rows->senha_Usuario'></td>";
-                echo "<td><input type='text' name='sexo' placeholder='$rows->sexo_Usuario'></td>";
+                echo "<td><select name ='sexo' id='sexo' form='formu'>
+                    <option value='Masculino'>Masculino</option>
+                    <option value='Feminino'>Feminino</option>
+                    <option value='Outro'>Outro</option>
+                    </select>
+                    </td>";
                 echo "<td><input type='date' name='dataNasc' placeholder='$rows->nasc_Usuario'></td>";
                 echo "<td><button type='submit'>Salvar</td>";
                 echo '</tr></form>';
@@ -75,29 +97,24 @@
                 $senha = $_POST['senha'];
                 empty($senha) ? $senha = $sen : null;
 
-                $sexo = strtoupper($_POST['sexo']);
+                $sexo = $_POST['sexo'];
                 empty($sexo) ? $sexo = $sex : null;
 
                 $nasc = $_POST['dataNasc'];
                 empty($nasc) ? $nasc = $nas : null;
 
-                if (!($sexo == "MASCULINO" || $sexo == "FEMININO" || $sexo == "OUTRO")) {
-                    echo 'Sexo inválido. Opções permitias: Masculino, Feminino, Outro';
+                $sql = "UPDATE `usuario` SET `nome_Usuario`='$nome',`email_Usuario`='$email',`senha_Usuario`='$senha',`sexo_Usuario`='$sexo',`nasc_Usuario`='$nasc' WHERE id_Usuario = $id";
+                $resultado = mysqli_query($conn, $sql);
+                if (!$resultado) {
+                    die ('Erro em atualizar dados: ' . mysqli_error($conn));
                 } else {
-                        $sql = "UPDATE `usuario` SET `nome_Usuario`='$nome',`email_Usuario`='$email',`senha_Usuario`='$senha',`sexo_Usuario`='$sexo',`nasc_Usuario`='$nasc' WHERE id_Usuario = $id";
-                        $resultado = mysqli_query($conn, $sql);
-                        if (!$resultado) {
-                            die ('Erro em atualizar dados: ' . mysqli_error($conn));
-                        } else {
-                            echo 'Dados atualizados com sucesso!';
-                        }
+                    echo 'Dados atualizados com sucesso!';
                 }
-
-
             }
-
         }
 ?>
+
+<a href="read.php">Voltar para a página inicial</a>
 </body>
 </html>
 
