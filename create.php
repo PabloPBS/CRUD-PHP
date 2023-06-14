@@ -79,7 +79,7 @@
             <input type="submit" value="Confirmar">
         </form>
 
-        <a href="read.php" rel='aside'>Retornar a tela incial</a>
+        <a href="index.php" rel='aside'>Retornar a tela incial</a>
     <?php 
         include 'conn.php';
 

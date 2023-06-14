@@ -65,7 +65,7 @@
             <form action="#" method="post">
                 <button type="submit" name='R' value="R">Confirmar</button>
             </form>
-            <a href="read.php">Voltar a página inicial</a>
+            <a href="index.php">Voltar a página inicial</a>
         </div>
 
     </div>

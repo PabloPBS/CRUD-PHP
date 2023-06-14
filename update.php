@@ -114,7 +114,7 @@
         }
 ?>
 
-<a href="read.php">Voltar para a página inicial</a>
+<a href="index.php">Voltar para a página inicial</a>
 </body>
 </html>
 
