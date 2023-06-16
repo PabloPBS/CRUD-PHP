@@ -100,6 +100,8 @@
                 echo 'Usuário inserido com sucesso!';
             }
         }
+
+        mysqli_close($conn);
     ?>
 </body>
 </html>

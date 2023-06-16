@@ -85,6 +85,8 @@
                 echo "<header>Usuário [$id] excluído com sucesso.</header>";
             }
         }
+
+        mysqli_close($conn);
     ?>
 </body>
 </html>

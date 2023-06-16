@@ -112,6 +112,8 @@
                 }
             }
         }
+
+        mysqli_close($conn);
 ?>
 
 <a href="index.php">Voltar para a página inicial</a>
